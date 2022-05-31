@@ -1,51 +1,36 @@
 import React, { useState, useRef } from 'react'
 // We use Route in order to define the different routes of our application
 import { Route, Routes } from "react-router-dom";
-import Geocode from "react-geocode";
 
 // We import all the components we need in our app
-import Button from './components/button'
+import Create from "./components/create";
+import Edit from "./components/edit";
+import Footer from "./components/footer";
+import Hero from "./components/hero";
 import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
-import Edit from "./components/edit";
-import Create from "./components/create";
-import SearchInput from './components/SearchInput';
+import FindResource from './components/findResource';
 
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
 const App = () => {
-  const searchForm = useRef(null);
-
-  const handleSearchSubmit = e => {
-    e.preventDefault();
-    let userLocation = searchForm.current.searchInput.value;
-
-    Geocode.fromAddress(userLocation).then(
-      (res) => {
-        const { lat, lng } = res.results[0].geometry.location;
-        console.log(lat, lng)
-      })
-  }
-
   return (
     <div>
       <Navbar />
-      <div style={{ margin: 20 }}>
+      <Hero 
+        heading= "Example App"
+        subHeading= "Resources in San Diego, CA"
+        bgImgUrl = "https://i.postimg.cc/8PGB5mg7/laptop-mushroom.jpg"
+      />
+      <div style={{ margin: 50 }}>
         <Routes>
-          <Route exact path="/" element={<RecordList />} />
-          <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/" element={<FindResource />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/viewAll" element={<RecordList />} />
+          <Route path="/edit/:id" element={<Edit />} />
         </Routes>
       </div>
-      <form ref={searchForm}>
-        <SearchInput
-          onChange={() => null}
-        />
-        <Button
-          handleClick={handleSearchSubmit}
-          text='Search'
-        />
-      </form>
+
+      <Footer />
     </div>
   );
 };

@@ -1,0 +1,67 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+nav h1 {
+    font-size: 24px;
+}
+
+.page-header{
+    background-color: #B2AFAB;
+    background-position: center center;
+    background-size: cover;
+    min-height: 70vh;
+    max-height: 999px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-header .motto{
+    text-align: left;
+    z-index: 3;
+    color: #fff;
+    position: relative;
+}
+
+.search-location-input  {
+    align-items: center;
+    justify-content: center;
+}
+
+.search-location-input input {
+    width: 30%;
+    height: 35px;
+    border-radius: 10px;
+    border: 1px solid #b8b7b7;
+}
+
+.search-location-input label {
+    font-size: 22px;
+    color: #C9684F;
+}
+
+.btn-submit, .btn-primary {
+    height: 35px;
+    border-radius: 10px;
+    padding: 0 75px;
+    background-color: #6C3C1E!important;
+    color: #fff;
+    border: none!important;
+}
+
+footer {
+    text-align: center;
+    margin-top: 100px;
+    padding-top: 25px;
+    height: 75px;
+    background-color: #E3CCAF;
+}
+
+footer a, footer a:hover {
+    color: #000;
+    font-size: 16px;
+}

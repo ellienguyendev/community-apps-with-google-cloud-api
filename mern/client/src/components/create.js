@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
+import Geocode from "react-geocode";
+
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -10,8 +13,7 @@ export default function Create() {
     description: "",
     category: "",
     website_url: "",
-    image_url: "",
-    law_enforcement_compliant: null
+    image_url: ""
   });
   const navigate = useNavigate();
 
@@ -23,23 +25,31 @@ export default function Create() {
   }
 
   // This function will handle the submission.
-  async function onSubmit(e) {
+  const onSubmit = e => {
     e.preventDefault();
 
-    // When a post request is sent to the create url, we'll add a new record to the database.
-    const newPerson = { ...form };
+    let coordinates
+    Geocode.fromAddress(form.address).then(
+      (res) => {
+        coordinates = res.results[0].geometry.location;
+        let newResource = { ...form }
+        newResource.coordinates = coordinates
 
-    await fetch("http://localhost:5000/record/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPerson),
-    })
-      .catch(error => {
-        window.alert(error);
-        return;
-      });
+        // When a post request is sent to the create url, we'll add a new record to the database.
+        fetch("http://localhost:5000/record/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newResource),
+        })
+          .catch(error => {
+            window.alert(error);
+            return;
+          });
+      })
+
+
 
     setForm({
       name: "",
@@ -48,10 +58,9 @@ export default function Create() {
       description: "",
       category: "",
       website_url: "",
-      image_url: "",
-      law_enforcement_compliant: false
+      image_url: ""
     });
-    navigate("/");
+    navigate("/viewAll");
   }
 
   // This following section will display the form that takes the input from the user.
@@ -60,7 +69,7 @@ export default function Create() {
       <h3>Add New Resource</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name of Resource / Org / Title</label>
           <input
             type="text"
             className="form-control"
@@ -70,7 +79,7 @@ export default function Create() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">Address or City Serviced</label>
           <input
             type="text"
             className="form-control"
@@ -130,35 +139,9 @@ export default function Create() {
           />
         </div>
         <div className="form-group">
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="law_enforcement_compliant"
-              id="notCompliant"
-              value="No"
-              checked={form.law_enforcement_compliant === "No"}
-              onChange={(e) => updateForm({ law_enforcement_compliant: e.target.value })}
-            />
-            <label htmlFor="positionIntern" className="form-check-label">No</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="law_enforcement_compliant"
-              id="compliant"
-              value="Yes"
-              checked={form.law_enforcement_compliant === "Yes"}
-              onChange={(e) => updateForm({ law_enforcement_compliant: e.target.value })}
-            />
-            <label htmlFor="positionJunior" className="form-check-label">Yes</label>
-          </div>
-        </div>
-        <div className="form-group">
           <input
             type="submit"
-            value="Create person"
+            value="Add Resource"
             className="btn btn-primary"
           />
         </div>

@@ -35,10 +35,9 @@ async function handlePlaceSelect(updateQuery) {
   const addressObject = autoComplete.getPlace();
   const query = addressObject.formatted_address;
   updateQuery(query);
-  console.log(addressObject);
 }
 
-function SearchInput() {
+function SearchForm({label, placeholder, id}) {
   const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
@@ -49,17 +48,36 @@ function SearchInput() {
     );
   }, []);
 
+
   return (
-    <div className="search-location-input">
+    <div className="search-location-input form-group">
+      <label htmlFor="searchForm">{label}</label>
+      <br />
       <input
         ref={autoCompleteRef}
         onChange={event => setQuery(event.target.value)}
-        placeholder="Enter a City or Zip Code"
+        placeholder={placeholder}
         value={query}
-        name='searchInput'
+        name='searchForm'
+        class='form control'
+        id={id}
       />
+      <label htmlFor="radius">Radius</label>
+     <select name="radius">
+       <option value="5">5 mi</option>
+       <option value="10">10 mi</option>
+       <option value="25">25 mi</option>
+       <option value="50">50 mi</option>
+       <option value="100">100 mi</option>
+     </select>
+     <label htmlFor="category">Category</label>
+     <select name="category">
+       <option value="all">All</option>
+       <option value="housing">Housing</option>
+       <option value="art">Art</option>
+     </select>
     </div>
   );
 }
 
-export default SearchInput;
+export default SearchForm;

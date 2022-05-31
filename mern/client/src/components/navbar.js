@@ -12,7 +12,7 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand" to="/">
-          <h1>community resources near you.</h1>
+          <h1>community resources near you</h1>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -29,8 +29,18 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
+              <NavLink className="nav-link" to="/">
+                Find Resources
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link" to="/create">
-                Create Record
+                Add a Resource
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/viewAll">
+                All Resources
               </NavLink>
             </li>
           </ul>
