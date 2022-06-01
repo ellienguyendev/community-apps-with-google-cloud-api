@@ -65,3 +65,7 @@ footer a, footer a:hover {
     color: #000;
     font-size: 16px;
 }
+
+.mapContainer div{
+    width:50%;
+}
