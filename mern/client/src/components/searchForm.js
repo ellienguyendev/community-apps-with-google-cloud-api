@@ -70,12 +70,6 @@ function SearchForm({label, placeholder, id}) {
        <option value="50">50 mi</option>
        <option value="100">100 mi</option>
      </select>
-     <label htmlFor="category">Category</label>
-     <select name="category">
-       <option value="all">All</option>
-       <option value="housing">Housing</option>
-       <option value="art">Art</option>
-     </select>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
+
 const MapContainer = ({ coordinates, resources, google, handleClick }) => {
   const [infoWindow, setInfoWindow] = useState(null);
 
@@ -11,7 +12,6 @@ const MapContainer = ({ coordinates, resources, google, handleClick }) => {
           key={i}
           title={location.name}
           position={location.coordinates}
-          desc={location.description}
           name={location.name}
           onClick={() => {
             setInfoWindow(location);
@@ -25,8 +25,9 @@ const MapContainer = ({ coordinates, resources, google, handleClick }) => {
     <div className="mapContainer">
     <Map
       google={google}
-      zoom={11}
+      zoom={14}
       initialCenter={coordinates}
+      style={{ height: '100%', position: 'relative', width: '100%' }}
     >
       {renderMarkers()}
     </Map>

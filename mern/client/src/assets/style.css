@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body {
     font-family: 'Lato', sans-serif;
 }
@@ -27,9 +30,8 @@ nav h1 {
     position: relative;
 }
 
-.search-location-input  {
-    align-items: center;
-    justify-content: center;
+.search-location-input  label{
+    margin-right: 15px;
 }
 
 .search-location-input input {
@@ -37,7 +39,9 @@ nav h1 {
     height: 35px;
     border-radius: 10px;
     border: 1px solid #b8b7b7;
+    margin-right: 15px;
 }
+
 
 .search-location-input label {
     font-size: 22px;
@@ -64,8 +68,32 @@ footer {
 footer a, footer a:hover {
     color: #000;
     font-size: 16px;
+    clear: both;
 }
 
-.mapContainer div{
-    width:50%;
+
+
+.resourceList:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.resourceList {
+    display: block;
+    clear: both;
+    margin-top: 65%;
+}
+
+.card {
+    width: 22%;
+    margin: 1.5%;
+    float: left;
+}
+
+.card img {
+    width: 100%;
 }
