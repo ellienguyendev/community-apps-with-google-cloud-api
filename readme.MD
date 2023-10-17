@@ -8,6 +8,7 @@ Revised code from Mern Stack code for the [Mern Tutorial](https://www.mongodb.co
 
 ## Description of App
 ![alt tag](app-gif.gif)
+
 Users can enter their location and see resources in their area / within a specified radius pinned on a map. They can click on each pin to view the resource and also filter by resource type / categories.
 
 ## How To Run
