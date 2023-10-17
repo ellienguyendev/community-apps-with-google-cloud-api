@@ -1,6 +1,6 @@
 # MERN & Google Maps API Template
 
-Template for building community resource web-apps with Google Maps APIs by [The Holistic Technologist](https://holistictech.io/blog/posts/building-community-resource-web-applications-with-google-maps-api)
+Template for building community resource web-apps with Google Maps APIs by [The Holistic Technologist](https://holistictech.io/building-community-resource-web-applications-with-google-maps-api)
 
 Revised code from Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-stack-tutorial)
 
